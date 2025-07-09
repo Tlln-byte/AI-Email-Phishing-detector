@@ -1,0 +1,42 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0d1117;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 10px #00ffc36b;
+  color: #00ffc3;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.nav-links a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #00ffc3;
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #00ffc3;
+}

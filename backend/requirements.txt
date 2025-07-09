@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+scikit-learn
+requests
+python-multipart
+passlib[bcrypt]
+python-jose[cryptography]
+email-validator
+bcrypt>=4.0.0
+itsdangerous

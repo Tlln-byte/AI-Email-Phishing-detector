@@ -1,0 +1,18 @@
+From: "Fake Bank" <security@fakebank.com>
+To: user@example.com
+Subject: Urgent: Account Verification Required
+Date: Mon, 8 Jul 2024 10:00:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Dear Customer,
+
+We have detected unusual activity on your bank account. Please verify your account information immediately to avoid suspension.
+
+Click the link below to verify your account:
+http://malicious.example.com/verify
+
+If you do not verify within 24 hours, your account will be suspended.
+
+Thank you,
+Fake Bank Security Team 

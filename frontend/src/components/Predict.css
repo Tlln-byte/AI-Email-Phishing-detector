@@ -1,0 +1,56 @@
+.predict-container {
+  padding: 2rem;
+  background-color: #0d1117;
+  color: #e0e0e0;
+  max-width: 600px;
+  margin: auto;
+}
+
+.predict-container h2 {
+  margin-bottom: 1rem;
+  color: #00ffcc;
+}
+
+.predict-container input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 4px;
+  background: #161b22;
+  color: #fff;
+  outline: none;
+}
+
+.predict-container button {
+  padding: 0.8rem 1.5rem;
+  background-color: #00ffc3;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.predict-container button:hover {
+  background-color: #00bfa5;
+}
+
+.result-box {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 6px;
+  background-color: #161b22;
+  box-shadow: 0 0 10px rgba(0, 255, 170, 0.2);
+}
+
+.result-box .phishing {
+  color: #ff3c6c;
+  font-weight: bold;
+}
+
+.result-box .safe {
+  color: #00ff99;
+  font-weight: bold;
+}

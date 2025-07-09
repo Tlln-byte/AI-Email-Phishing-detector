@@ -1,0 +1,26 @@
+# -------- Stage 1: Install dependencies --------
+FROM python:3.10 AS builder
+
+WORKDIR /install
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip config set global.timeout 100 && \
+    pip install --no-cache-dir -r requirements.txt && \
+    pip freeze > frozen-requirements.txt
+
+# -------- Stage 2: Final runtime image --------
+FROM python:3.10
+
+WORKDIR /app
+
+COPY --from=builder /install/frozen-requirements.txt ./requirements.txt
+RUN pip config set global.timeout 100 && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy only the rest of the code after dependencies for better caching
+COPY . /app
+
+EXPOSE 8000
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

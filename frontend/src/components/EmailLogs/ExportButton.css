@@ -1,0 +1,15 @@
+/* frontend/src/components/EmailLogs/ExportButton.css */
+.export-button {
+  background-color: #00ffbf;
+  border: none;
+  color: #0d1117;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.export-button:hover {
+  background-color: #00e6ad;
+}

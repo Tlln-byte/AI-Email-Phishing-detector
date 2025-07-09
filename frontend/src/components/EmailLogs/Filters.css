@@ -1,0 +1,39 @@
+/* frontend/src/components/EmailLogs/Filters.css */
+.filters {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #1a1f26;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 255, 170, 0.1);
+}
+
+.filters label {
+  font-weight: bold;
+  color: #00ffc8;
+}
+
+.filters select,
+.filters input[type="range"] {
+  background-color: #0d1117;
+  color: #e0e0e0;
+  border: 1px solid #00ffc3;
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+}
+
+.clear-btn {
+  background-color: #ff5c5c;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background-color: #ff1f1f;
+}

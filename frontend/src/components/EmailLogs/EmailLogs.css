@@ -1,0 +1,54 @@
+/* frontend/src/components/EmailLogs/EmailLogs.css */
+.email-logs-container {
+  padding: 2rem;
+  color: #e0e0e0;
+  background-color: #0d1117;
+  min-height: 100vh;
+}
+
+.email-logs-header {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #00ffe1;
+  font-weight: bold;
+  text-shadow: 0 0 8px #00ffe1;
+}
+
+.controls-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.charts-section {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.chart-container {
+  width: 350px;
+  height: 350px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 350px;
+  max-height: 350px;
+}
+
+.loading-spinner,
+.error-message {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+}

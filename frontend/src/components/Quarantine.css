@@ -1,0 +1,361 @@
+/**
+ * Quarantine Component Styles
+ * 
+ * Modern, responsive styling for the quarantined emails interface.
+ * Features clean email display, feedback buttons, and status indicators.
+ */
+
+.quarantine-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.quarantine-container h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: #ffffff;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #333;
+  border-top: 4px solid #00ffc3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.error-state {
+  text-align: center;
+  padding: 3rem;
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.retry-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.retry-btn:hover {
+  background: #ff5252;
+}
+
+/* Quarantine List */
+.quarantine-list {
+  margin-top: 2rem;
+}
+
+.quarantine-info {
+  background: rgba(0, 255, 195, 0.1);
+  border: 1px solid rgba(0, 255, 195, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  color: #00ffc3;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Email List */
+.email-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.email-item {
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.email-item:hover {
+  border-color: #00ffc3;
+  box-shadow: 0 4px 20px rgba(0, 255, 195, 0.1);
+}
+
+/* Email Header */
+.email-header {
+  margin-bottom: 1.5rem;
+}
+
+.email-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.email-reason,
+.email-status,
+.email-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #cccccc;
+}
+
+.email-reason strong,
+.email-status strong,
+.email-timestamp strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Email Content */
+.email-content {
+  margin-bottom: 1.5rem;
+}
+
+.email-content strong {
+  color: #ffffff;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.email-text {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #cccccc;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Email Actions */
+.email-actions {
+  border-top: 1px solid #333;
+  padding-top: 1.5rem;
+}
+
+.feedback-prompt {
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.feedback-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.feedback-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 140px;
+  justify-content: center;
+}
+
+.legitimate-btn {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  border: 2px solid rgba(76, 175, 80, 0.3);
+}
+
+.legitimate-btn:hover {
+  background: rgba(76, 175, 80, 0.3);
+  border-color: #4caf50;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.phishing-btn {
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+  border: 2px solid rgba(255, 107, 107, 0.3);
+}
+
+.phishing-btn:hover {
+  background: rgba(255, 107, 107, 0.3);
+  border-color: #ff6b6b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+/* Quarantine Actions */
+.quarantine-actions {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.refresh-btn {
+  background: #00ffc3;
+  color: #1a1a1a;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.refresh-btn:hover {
+  background: #00e6b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 195, 0.3);
+}
+
+/* Status Indicators */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.status-indicator.pending {
+  background: #ff9800;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.released {
+  background: #4caf50;
+}
+
+.status-indicator.confirmed {
+  background: #ff6b6b;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .quarantine-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .quarantine-container h2 {
+    font-size: 1.5rem;
+  }
+  
+  .email-item {
+    padding: 1rem;
+  }
+  
+  .email-meta {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .feedback-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .feedback-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .email-text {
+    font-size: 0.8rem;
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .quarantine-container {
+    padding: 0.5rem;
+    margin: 0.5rem;
+  }
+  
+  .email-item {
+    padding: 0.75rem;
+  }
+  
+  .email-reason,
+  .email-status,
+  .email-timestamp {
+    font-size: 0.8rem;
+  }
+  
+  .feedback-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Scrollbar Styling */
+.email-text::-webkit-scrollbar {
+  width: 8px;
+}
+
+.email-text::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+.email-text::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+.email-text::-webkit-scrollbar-thumb:hover {
+  background: #444;
+} 

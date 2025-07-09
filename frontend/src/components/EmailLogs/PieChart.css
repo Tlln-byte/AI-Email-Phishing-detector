@@ -1,0 +1,15 @@
+/* frontend/src/components/EmailLogs/PieChart.css */
+.pie-chart-container {
+  background-color: #161b22;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 170, 0.15);
+  text-align: center;
+  color: #e0e0e0;
+}
+
+.pie-chart-title {
+  color: #00ffd5;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
