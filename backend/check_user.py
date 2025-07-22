@@ -24,7 +24,7 @@ def check_user():
         
         # Test password verification
         test_password = "TestPassword123"
-        is_valid = bcrypt.verify(test_password, test_user.hashed_password)
+        is_valid = bcrypt.verify(test_password, str(test_user.hashed_password))
         print(f"  Password verification: {is_valid}")
     else:
         print("Test user not found.")
@@ -42,7 +42,7 @@ def check_user():
         
         # Test password verification
         test_password = "admin123"
-        is_valid = bcrypt.verify(test_password, admin_user.hashed_password)
+        is_valid = bcrypt.verify(test_password, str(admin_user.hashed_password))
         print(f"  Password verification: {is_valid}")
     else:
         print("Admin user not found.")

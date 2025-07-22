@@ -17,7 +17,7 @@ def reset_admin_password():
     if admin_user:
         # Reset password to a known value
         new_password = "admin123"
-        admin_user.hashed_password = bcrypt.hash(new_password)
+        admin_user.hashed_password = new_hashed_password  # type: ignore
         db.commit()
         print(f"✅ Admin password reset to: {new_password}")
     else:

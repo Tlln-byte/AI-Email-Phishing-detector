@@ -62,10 +62,34 @@ const UploadEmailScan = () => {
       </form>
       {result && (
         <div style={{ marginTop: "2em" }}>
-          {result.prediction === true ? (
-            <EmptyState message="Phishing detected! This email is dangerous and has been quarantined." />
+          {result.is_phishing ? (
+            <>
+              <EmptyState message="Phishing detected! This email is dangerous and has been quarantined." />
+              {result.phishing_reasons && result.phishing_reasons.length > 0 && (
+                <div style={{ color: "#ff8080", marginTop: "1em", textAlign: "left" }}>
+                  <strong>Reasons flagged:</strong>
+                  <ul>
+                    {result.phishing_reasons.map((reason, idx) => (
+                      <li key={idx}>{reason}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </>
           ) : (
-            <EmptyState message="No phishing detected. This email appears safe." />
+            <>
+              <EmptyState message="No phishing detected. This email appears safe." />
+              {result.phishing_reasons && result.phishing_reasons.length > 0 && (
+                <div style={{ color: "#ffd700", marginTop: "1em", textAlign: "left" }}>
+                  <strong>Potentially suspicious indicators (not enough to flag as phishing):</strong>
+                  <ul>
+                    {result.phishing_reasons.map((reason, idx) => (
+                      <li key={idx}>{reason}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </>
           )}
           {result.confidence !== undefined && (
             <div style={{ color: "#fff", marginTop: "1em" }}>

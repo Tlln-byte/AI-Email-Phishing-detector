@@ -5,8 +5,9 @@ WORKDIR /app
 
 # Copy dependency files first for better caching
 COPY package.json package-lock.json ./
-RUN npm config set registry https://registry.npmjs.org/
-RUN npm install
+
+# Clean npm cache and install dependencies
+RUN npm cache clean --force && npm config set registry https://registry.npmjs.org/ && npm install --legacy-peer-deps --no-audit --progress=false || cat /app/npm-debug.log
 
 # Copy the rest of the code and build
 COPY . /app

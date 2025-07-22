@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -25,34 +25,54 @@ import Chatbot from "./components/Chatbot";
 import AdminEducativeTips from "./components/AdminEducativeTips";
 
 const App = () => {
-  const token = localStorage.getItem("token");
-  const isLoggedIn = !!token;
-  let isAdmin = false;
-  if (token) {
-    try {
-      const decoded = jwtDecode(token);
-      isAdmin = decoded.role === "admin";
-    } catch (e) {
-      isAdmin = false;
+  // Use state for token and role
+  const [token, setToken] = useState(() => localStorage.getItem("token"));
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // Update admin status when token changes
+  useEffect(() => {
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setIsAdmin(decoded.role === "admin");
+      } catch (e) {
+        setIsAdmin(false);
+      }
+    } else {
+      setIsAdmin(false);
     }
-  }
+  }, [token]);
+
+  // Helper to update auth state (for login/logout)
+  const setAuth = useCallback((newToken) => {
+    if (newToken) {
+      localStorage.setItem("token", newToken);
+      setToken(newToken);
+    } else {
+      localStorage.removeItem("token");
+      setToken(null);
+    }
+  }, []);
+
+  const isLoggedIn = !!token;
 
   return (
     <BrowserRouter>
       <div className="app-background">
-        {isLoggedIn && <Header />}
+        {isLoggedIn && <Header setAuth={setAuth} />}
         {isLoggedIn && (
-          <nav style={{ margin: '1em' }}>
-            <Link to="/connect-email" style={{ marginRight: '1em' }}>Connect Email</Link>
-            <Link to="/scan-inbox" style={{ marginRight: '1em' }}>Scan My Inbox</Link>
-            <Link to="/upload-email" style={{ marginRight: '1em' }}>Upload Email</Link>
-            <Link to="/quarantine" style={{ marginRight: '1em' }}>Quarantine</Link>
-            {isAdmin && <Link to="/admin/users" style={{ marginRight: '1em' }}>User Management</Link>}
-            {isAdmin && <Link to="/admin/tips" style={{ marginRight: '1em' }}>Manage Tips</Link>}
+          <nav style={{ margin: '1em', display: 'flex', flexWrap: 'wrap', gap: '1em', alignItems: 'center' }}>
+            <Link to="/connect-email">Connect Email</Link>
+            <Link to="/scan-inbox">Scan My Inbox</Link>
+            <Link to="/upload-email">Upload Email</Link>
+            <Link to="/quarantine">Quarantine</Link>
+            {/* Admin-only links: Only visible to users with admin role */}
+            {isAdmin && <Link to="/admin/users">User Management</Link>}
+            {isAdmin && <Link to="/admin/tips">Manage Tips</Link>}
           </nav>
         )}
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login setAuth={setAuth} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPasswordRequest />} />
           <Route path="/reset-password" element={<ResetPassword />} />
@@ -70,8 +90,8 @@ const App = () => {
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
         <Footer />
-        {/* Floating Chatbot for phishing education and support */}
-        <Chatbot />
+        {/* Floating Chatbot for phishing education and support - only show when logged in */}
+        {isLoggedIn && <Chatbot />}
       </div>
     </BrowserRouter>
   );

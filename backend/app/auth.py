@@ -48,10 +48,10 @@ def create_access_token(data: Dict[str, Any]) -> str:
     """
     try:
         # Create a copy of the data to avoid modifying the original
-    to_encode = data.copy()
+        to_encode = data.copy()
         # Set token expiration time
-    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp": expire})
+        expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        to_encode.update({"exp": expire})
         # Encode the token with the secret key
         encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
         return encoded_jwt

@@ -3,14 +3,14 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 import { toast } from "react-toastify";
 
-const Header = () => {
+const Header = ({ setAuth }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const isActive = (path) => (location.pathname === path ? "active" : "");
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    if (setAuth) setAuth(null);
     toast.info("You have been logged out.");
     navigate("/");
   };

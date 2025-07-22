@@ -16,7 +16,7 @@ def create_test_user():
     
     if test_user:
         print("Test user already exists, approving...")
-        test_user.is_approved = True
+        test_user.is_approved = True  # type: ignore
         db.commit()
         print(f"✅ Test user {test_user.email} approved.")
     else:

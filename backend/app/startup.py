@@ -12,18 +12,20 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def create_admin_user():
-    """Create admin user if it doesn't exist."""
+    """
+    Create the default admin user if it doesn't already exist.
+    Returns the admin user object (existing or new).
+    """
     db = SessionLocal()
     try:
         admin_email = "tallantuxh@gmail.com"
         admin_password = "7230"
-        
         # Check if admin user already exists
         admin = db.query(User).filter_by(email=admin_email).first()
-        
         if not admin:
-            # Create new admin user
+            # Create new admin user with default credentials
             hashed_password = bcrypt.hash(admin_password)
             admin = User(
                 email=admin_email,
@@ -38,7 +40,6 @@ def create_admin_user():
         else:
             logger.info(f"✅ Admin user {admin_email} already exists")
             return admin
-            
     except Exception as e:
         logger.error(f"❌ Error creating admin user: {e}")
         db.rollback()
@@ -46,18 +47,20 @@ def create_admin_user():
     finally:
         db.close()
 
+
 def create_test_user():
-    """Create test user if it doesn't exist."""
+    """
+    Create a default test user if it doesn't already exist.
+    Returns the test user object (existing or new).
+    """
     db = SessionLocal()
     try:
         test_email = "testuser@example.com"
         test_password = "TestPassword123"
-        
         # Check if test user already exists
         test_user = db.query(User).filter_by(email=test_email).first()
-        
         if not test_user:
-            # Create new test user
+            # Create new test user with default credentials
             hashed_password = bcrypt.hash(test_password)
             test_user = User(
                 email=test_email,
@@ -72,7 +75,6 @@ def create_test_user():
         else:
             logger.info(f"✅ Test user {test_email} already exists")
             return test_user
-            
     except Exception as e:
         logger.error(f"❌ Error creating test user: {e}")
         db.rollback()
@@ -80,8 +82,12 @@ def create_test_user():
     finally:
         db.close()
 
+
 def seed_test_data():
-    """Seed database with test data if none exists."""
+    """
+    Seed the database with test feedback, prediction logs, and a quarantined email if none exist.
+    This helps with initial testing and demoing the system.
+    """
     db = SessionLocal()
     try:
         # Add test feedback if none exists
@@ -93,7 +99,6 @@ def seed_test_data():
             ]
             db.add_all(feedback_data)
             logger.info("✅ Test feedback data added")
-        
         # Add test prediction logs if none exists
         if db.query(PredictionLog).count() == 0:
             prediction_data = [
@@ -103,7 +108,6 @@ def seed_test_data():
             ]
             db.add_all(prediction_data)
             logger.info("✅ Test prediction logs added")
-        
         # Add test quarantined email if none exists
         if db.query(QuarantinedEmail).count() == 0:
             # Get admin user for the quarantined email
@@ -117,30 +121,28 @@ def seed_test_data():
                 )
                 db.add(quarantined_email)
                 logger.info("✅ Test quarantined email added")
-        
         db.commit()
-        
     except Exception as e:
         logger.error(f"❌ Error seeding test data: {e}")
         db.rollback()
     finally:
         db.close()
 
+
 def initialize_database():
-    """Initialize database with admin user and test data."""
+    """
+    Initialize the database with an admin user, a test user, and test data.
+    This function is called on application startup to ensure the system is ready to use.
+    Returns a summary dictionary with credentials for demo/testing.
+    """
     logger.info("🚀 Initializing database...")
-    
     # Create admin user
     admin = create_admin_user()
-    
     # Create test user
     test_user = create_test_user()
-    
     # Seed test data
     seed_test_data()
-    
     logger.info("✅ Database initialization completed")
-    
     return {
         "admin_created": admin is not None,
         "test_user_created": test_user is not None,

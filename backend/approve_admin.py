@@ -15,8 +15,8 @@ def approve_admin():
     
     if admin_user:
         # Approve the user and set as admin
-        admin_user.is_approved = True
-        admin_user.role = "admin"
+        admin_user.is_approved = True  # type: ignore
+        admin_user.role = "admin"  # type: ignore
         db.commit()
         print(f"✅ Admin user {admin_user.email} approved and set as admin.")
     else:
